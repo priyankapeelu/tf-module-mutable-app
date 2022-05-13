@@ -23,8 +23,8 @@ data "aws_ami" "ami" {
 }
 
 
-data "aws_secretsmanager_secret" "secrets" {
-  name = "${var.ENV}/roboshop/secrets"
+data "aws_secretsmanager_secret" "secret" {
+  name = "${var.ENV}/roboshop/secret"
 }
 
 data "aws_secretsmanager_secret_version" "secret" {
