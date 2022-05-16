@@ -10,7 +10,7 @@ data "terraform_remote_state" "vpc" {
 data "terraform_remote_state" "alb" {
   backend = "s3"
   config = {
-    bucket = "terraform-b63"
+    bucket = "terraformd63"
     key    = "alb/${var.ENV}/terraform.tfstate"
     region = "us-east-1"
   }
@@ -19,7 +19,7 @@ data "terraform_remote_state" "alb" {
 data "terraform_remote_state" "db" {
   backend = "s3"
   config = {
-    bucket = "terraform-b63"
+    bucket = "terraformd63"
     key    = "databases/${var.ENV}/terraform.tfstate"
     region = "us-east-1"
   }
@@ -28,7 +28,7 @@ data "terraform_remote_state" "db" {
 data "terraform_remote_state" "iam" {
   backend = "s3"
   config = {
-    bucket = "terraform-b63"
+    bucket = "terraformd63"
     key    = "iam/${var.ENV}/terraform.tfstate"
     region = "us-east-1"
   }
@@ -37,13 +37,13 @@ data "terraform_remote_state" "iam" {
 
 data "aws_ami" "ami" {
   most_recent = true
-  name_regex  = "base-with-ansible"
+  name_regex  = "base_with_ansible"
   owners      = ["self"]
 }
 
 
 data "aws_secretsmanager_secret" "secret" {
-  name = "${var.ENV}/roboshop/secrets"
+  name = "${var.ENV}/roboshop/secret"
 }
 
 data "aws_secretsmanager_secret_version" "secret" {
