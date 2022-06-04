@@ -16,7 +16,7 @@ resource "aws_security_group" "allow_app" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["172.31.0.0/16"]
+    cidr_blocks = ["data.terraform_remote_state.vpc.outputs.VPC_CIDR", "172.31.0.0/16"]
   }
 
   egress {
