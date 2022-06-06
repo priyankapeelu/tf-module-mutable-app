@@ -16,16 +16,6 @@ data "terraform_remote_state" "alb" {
   }
 }
 
-data "terraform_remote_state" "db" {
-  backend = "s3"
-  config = {
-    bucket = "terraformd63"
-    key    = "databases/${var.ENV}/terraform.tfstate"
-    region = "us-east-1"
-  }
-}
-
-
 data "aws_ami" "ami" {
   most_recent = true
   name_regex  = "base_with_ansible"
@@ -33,10 +23,10 @@ data "aws_ami" "ami" {
 }
 
 
-data "aws_secretsmanager_secret" "secret" {
-  name = "${var.ENV}/roboshop/secret"
+data "aws_secretsmanager_secret" "secrets" {
+  name = "${var.ENV}/roboshop/secrets"
 }
 
-data "aws_secretsmanager_secret_version" "secret" {
-  secret_id = data.aws_secretsmanager_secret.secret.id
+data "aws_secretsmanager_secret_version" "secrets" {
+  secret_id = data.aws_secretsmanager_secret.secrets.id
 }
